@@ -1,0 +1,11 @@
+# Dependencies (large, reproducible via `bun install`)
+node_modules/
+
+# Environment variables — contain secrets (DB password). NEVER commit.
+.env
+.env.*
+!.env.example
+
+# Logs / OS files
+*.log
+.DS_Store

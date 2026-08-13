@@ -1,4 +1,5 @@
 import pino from 'pino';
+import pinoHttp from 'pino-http';
 
 const transport = pino.transport({
   targets: [
@@ -28,6 +29,6 @@ const transport = pino.transport({
   ]
 });
 
-const logger = pino(transport);
+export const logger = pino(transport);
 
-export default logger;
+export const pinoHttpMiddleware = pinoHttp({ logger });

@@ -16,7 +16,7 @@ export async function getTodos(req, res) {
 
   const todos = await getAllTodos(offset, limit, search);
 
-  return res.status(200).json(todos);
+  throw new Error('test error');
 }
 
 export async function getTodoById(req, res) {

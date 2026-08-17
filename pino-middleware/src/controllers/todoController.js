@@ -4,7 +4,7 @@ import {
   deleteTodoById as deleteTodoByIdApi,
   createTodo as createTodoApi,
   updateTodo as updateTodoApi,
-  countTodo as countTodoApi,
+  countTodo as countTodoApi
 } from '../services/todoService.js';
 
 // Missing next function as a middleware
@@ -44,7 +44,7 @@ export async function deleteTodoById(req, res) {
   await deleteTodoByIdApi(todoId);
 
   return res.status(200).json({
-    message: 'Todo deleted successfully',
+    message: 'Todo deleted successfully'
   });
 }
 
@@ -59,7 +59,7 @@ export async function createTodo(req, res) {
 
   return res.status(200).json({
     message: 'Todo added successfully',
-    data: addedTodo,
+    data: addedTodo
   });
 }
 
@@ -70,7 +70,7 @@ export async function updateTodo(req, res) {
 
   return res.status(200).json({
     message: 'Todo updated successfully',
-    data: updatedTodo,
+    data: updatedTodo
   });
 }
 
@@ -80,6 +80,6 @@ export async function countTodo(req, res) {
   const todoCount = await countTodoApi(search);
 
   return res.status(200).json({
-    count: todoCount,
+    count: todoCount
   });
 }

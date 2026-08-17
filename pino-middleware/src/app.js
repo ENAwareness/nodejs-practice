@@ -4,6 +4,7 @@ import { rateLimit } from 'express-rate-limit';
 
 import todoRouter from './routes/todoRoute.js';
 import { pinoHttpMiddleware } from './utils/loggerHelper.js';
+import { UniqueConstraintError } from 'sequelize';
 
 const limiter = rateLimit({
   windowMs: 1000, // 1 second
@@ -33,5 +34,13 @@ app.use((_req, res, next) => {
 app.use(pinoHttpMiddleware);
 
 app.use('/v1', todoRouter);
+
+app.use((err, req, res, _next) => {
+  req.log.error({ err }, 'unhandled error');
+  if (err instanceof UniqueConstraintError) {
+    return res.status(409).json({ message: 'ID already exists.' });
+  }
+  res.status(500).json({ message: 'Internal Server Error' });
+});
 
 export default app;
